@@ -210,9 +210,8 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
             device2 = mAvailableOutputDevices & AudioSystem::DEVICE_OUT_EARPIECE;
         }
 
-        // device is DEVICE_OUT_SPEAKER if we come from case STRATEGY_SONIFICATION or
-        // STRATEGY_ENFORCED_AUDIBLE, 0 otherwise
-        device = device ? device : device2;
+        // device is DEVICE_OUT_SPEAKER if we come from case STRATEGY_SONIFICATION
+        device |= device2;
         if (device == 0) {
             ALOGE("getDeviceForStrategy() speaker device not found");
         }
