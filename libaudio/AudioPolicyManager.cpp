@@ -155,7 +155,7 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
             break;
         }
         // FALL THROUGH
-
+/*
     case STRATEGY_ENFORCED_AUDIBLE:
         // strategy STRATEGY_ENFORCED_AUDIBLE uses same routing policy as STRATEGY_SONIFICATION
         // except when in call where it doesn't default to STRATEGY_PHONE behavior
@@ -166,7 +166,7 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
         }
         // The second device used for sonification is the same as the device used by media strategy
         // FALL THROUGH
-
+*/
     case STRATEGY_MEDIA: {
 #ifdef HAVE_FM_RADIO
         uint32_t device2 = 0;
