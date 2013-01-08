@@ -158,16 +158,11 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
 
     case STRATEGY_ENFORCED_AUDIBLE:
         // strategy STRATEGY_ENFORCED_AUDIBLE uses same routing policy as STRATEGY_SONIFICATION
-        // except:
-        //   - when in call where it doesn't default to STRATEGY_PHONE behavior
-        //   - in countries where not enforced in which case it follows STRATEGY_MEDIA
+        // except when in call where it doesn't default to STRATEGY_PHONE behavior
 
-        if (strategy == STRATEGY_SONIFICATION ||
-                !mStreams[AUDIO_STREAM_ENFORCED_AUDIBLE].mCanBeMuted) {
-            device = mAvailableOutputDevices & AudioSystem::DEVICE_OUT_SPEAKER;
-            if (device == 0) {
-                ALOGE("getDeviceForStrategy() speaker device not found for STRATEGY_SONIFICATION");
-            }
+        device = mAvailableOutputDevices & AudioSystem::DEVICE_OUT_SPEAKER;
+        if (device == 0) {
+            ALOGE("getDeviceForStrategy() speaker device not found");
         }
         // The second device used for sonification is the same as the device used by media strategy
         // FALL THROUGH
